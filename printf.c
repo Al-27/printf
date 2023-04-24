@@ -11,8 +11,8 @@ int _printf(const char* format, ...)
 {
     const char* curs = format;
     char *str;
-    /*char _char;
-    int num;*/int printed_chars;/*
+    char ch;
+    int printed_chars;/*, num;
     float fnum;*/
     va_list args;
 
@@ -30,19 +30,20 @@ int _printf(const char* format, ...)
                     if(!str)
                         exit(550);
                     printed_chars += print_str(str) - 1;
-                    curs++;
                     break;
                 case 'c':
-                    write(1,(curs++),1);
+                    ch = va_arg(args,int);
+                    write(1,&ch,1);
                     break;
                 case '%':
                     write(1,(curs++),1);
                     break;
                 default:
                     write(1,(curs-1),1);
-                    write(1,(curs++),1);
+                    write(1,(curs),1);
                     break;
             }
+            curs++;
         }
         else
         {
