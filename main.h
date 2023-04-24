@@ -2,5 +2,6 @@
 #define MAIN_H_INCLUDED
 
 #include "printf.h"
+#include "std_funcs.h"
 
 #endif
