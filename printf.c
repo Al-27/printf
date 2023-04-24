@@ -39,14 +39,14 @@ int _printf(const char* format, ...)
                 case 'i':
                     num = va_arg(args,int);
                     str = i_to_str(num);
-                    printed_chars += str_len(str);
+                    printed_chars += str_len(str) - 1;
                     print_str(str);
                     free(str);
                     break;
                 case 'd':
                     num = va_arg(args,int);
                     str = i_to_str(num);
-                    printed_chars += str_len(str);
+                    printed_chars += str_len(str) - 1;
                     print_str(str);
                     free(str);
                     break;
