@@ -6,4 +6,5 @@ specifiers conversion handler for :
  - `%c` prints a single character
  - `%s` the whole damn thing
  - `%%` i want just the percent symbol
-and it will return number of characters printed
+ 
+ and it will return number of characters printed
