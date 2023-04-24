@@ -1,4 +1,5 @@
 #include "printf.h"
+#include "std_funcs.h"
 
 /**
  * _printf - desc
@@ -11,9 +12,9 @@ int _printf(const char* format, ...)
 {
     const char* curs = format;
     char *str;
-    char ch;
-    int printed_chars;/*, num;
-    float fnum;*/
+    unsigned char ch;
+    int printed_chars, num;
+    /*float fnum;*/
     va_list args;
 
     printed_chars = 0;
@@ -28,12 +29,24 @@ int _printf(const char* format, ...)
                 case 's':
                     str = va_arg(args, char*);
                     if(!str)
-                        exit(550);
+                        str = "(null)";
                     printed_chars += print_str(str) - 1;
                     break;
                 case 'c':
                     ch = va_arg(args,int);
                     write(1,&ch,1);
+                    break;
+                case 'i':
+                    num = va_arg(args,int);
+                    str = i_to_str(num);
+                    print_str(str);
+                    free(str);
+                    break;
+                case 'd':
+                    num = va_arg(args,int);
+                    str = i_to_str(num);
+                    print_str(str);
+                    free(str);
                     break;
                 case '%':
                     write(1,(curs),1);
@@ -74,4 +87,19 @@ int print_str(char* str)
         printed++;
     }
     return printed;
+}
+
+/**
+ * str_len - desciption
+ * @string: string
+ *
+ * Return: length
+ */
+int str_len(char* string)
+{
+    char* p;
+
+    for(p = string; *p ; p++);
+
+    return p-string;
 }

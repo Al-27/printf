@@ -6,7 +6,7 @@
 #include <unistd.h>
 
 int _printf(const char *format, ...);
-int len_str(char* string);
 int print_str(char* string);
+int str_len(char* string);
 
 #endif
