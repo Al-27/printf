@@ -1,5 +1,4 @@
 #include "printf.h"
-#include "std_funcs.h"
 
 /**
  * _printf - desc
@@ -30,7 +29,7 @@ int _printf(const char* format, ...)
                     str = va_arg(args, char*);
                     if(!str)
                         str = "(null)";
-                    printed_chars += print_str(str) - 1;
+                    printed_chars += print_str(str);
                     break;
                 case 'c':
                     ch = va_arg(args,int);
@@ -38,17 +37,31 @@ int _printf(const char* format, ...)
                     break;
                 case 'i':
                     num = va_arg(args,int);
-                    str = i_to_str(num);
-                    printed_chars += str_len(str) - 1;
-                    print_str(str);
-                    free(str);
+                    printed_chars += print_num(num,0,0);
                     break;
                 case 'd':
                     num = va_arg(args,int);
-                    str = i_to_str(num);
-                    printed_chars += str_len(str) - 1;
-                    print_str(str);
-                    free(str);
+                    printed_chars += print_num(num,0,0);
+                    break;
+                case 'b':
+                    num = va_arg(args,unsigned int);
+                    printed_chars += print_bin(num);
+                    break;
+                case 'o':
+                    num = va_arg(args,unsigned int);
+                    printed_chars += print_oct(num);
+                    break;
+                case 'u':
+                    num = va_arg(args,unsigned int);
+                    printed_chars += print_num(0,num,1);
+                    break;
+                case 'x':
+                    num = va_arg(args,unsigned int);
+                    printed_chars += print_hex(num,0);
+                    break;
+                case 'X':
+                    num = va_arg(args,unsigned int);
+                    printed_chars += print_hex(num,1);
                     break;
                 case '%':
                     write(1,(curs),1);
@@ -56,6 +69,7 @@ int _printf(const char* format, ...)
                 default:
                     write(1,(curs-1),1);
                     write(1,(curs),1);
+                    printed_chars++;
                     break;
             }
             curs++;
@@ -73,7 +87,7 @@ int _printf(const char* format, ...)
 
 /**
  * print_str - print string/char
- * @string: char*
+ * @str: char*
  *
  * Return: int
  */
@@ -88,7 +102,7 @@ int print_str(char* str)
         str++;
         printed++;
     }
-    return printed;
+    return printed - 1 ;
 }
 
 /**

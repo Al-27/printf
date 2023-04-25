@@ -35,9 +35,8 @@ char* i_to_str(int num)
 
 /**
  * reverse - desciption
- * @str: string to reverse
+ * @s: string to reverse
  *
- * Return: reversed str
  */
 void reverse(char s[])
 {
@@ -51,7 +50,31 @@ void reverse(char s[])
 
 }
 
+/**
+ * ui_to_str - desciption
+ * @num: to be converted
+ *
+ * Return: char*
+ */
+char* ui_to_str(unsigned int num)
+{
+    char* sNum;
+    int i = 0, tmp;
 
+    sNum = malloc(30);
+
+    do{
+
+        sNum[i] = num % 10 + '0';
+        i++;
+        num /= 10;
+
+    }while( num > 0 );
+
+    sNum[i] = '\0';
+    reverse(sNum);
+    return sNum;
+}
 
 
 
