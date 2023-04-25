@@ -8,7 +8,7 @@
 int print_bin(unsigned int num)
 {
     char str[sizeof(int)*24];
-    int i, j;
+    int i;
 
     i = 0;
 
@@ -61,7 +61,7 @@ int print_num(int num, unsigned int unum, int use_unum)
 int print_oct(unsigned int num)
 {
     char str[sizeof(int)*24];
-    int len, i;
+    int i;
 
     i = 0;
     do{
@@ -88,7 +88,7 @@ int print_oct(unsigned int num)
 int print_hex(unsigned int num,int caps)
 {
     char str[sizeof(int)*24];
-    int len, i;
+    int i;
 
     i = 0;
     do{

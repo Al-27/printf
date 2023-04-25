@@ -59,7 +59,7 @@ void reverse(char s[])
 char* ui_to_str(unsigned int num)
 {
     char* sNum;
-    int i = 0, tmp;
+    int i = 0;
 
     sNum = malloc(30);
 
