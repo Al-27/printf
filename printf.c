@@ -31,6 +31,12 @@ int _printf(const char* format, ...)
                         str = "(null)";
                     printed_chars += print_str(str);
                     break;
+                case 'S':
+                    str = va_arg(args, char*);
+                    if(!str)
+                        str = "(null)";
+                    printed_chars += printable_str(str);
+                    break;
                 case 'c':
                     ch = va_arg(args,int);
                     write(1,&ch,1);
@@ -57,11 +63,15 @@ int _printf(const char* format, ...)
                     break;
                 case 'x':
                     num = va_arg(args,unsigned int);
-                    printed_chars += print_hex(num,0);
+                    printed_chars += print_hex(num,0,0);
                     break;
                 case 'X':
                     num = va_arg(args,unsigned int);
-                    printed_chars += print_hex(num,1);
+                    printed_chars += print_hex(num,1,0);
+                    break;
+                case 'p':
+                    num = va_arg(args,unsigned int);
+                    printed_chars += print_hex(num,1,1);
                     break;
                 case '%':
                     write(1,(curs),1);
@@ -101,6 +111,41 @@ int print_str(char* str)
         write(1,str,1);
         str++;
         printed++;
+    }
+    return printed - 1 ;
+}
+
+/**
+ * printable_str - print string/char
+ * @str: char*
+ *
+ * Return: int
+ */
+int printable_str(char* str)
+{
+    int printed;
+    char* x = "\\x";
+
+    printed = 0;
+    while(*str)
+    {
+        if( (*str < 32 && *str > 0) || *str >= 127 )
+        {
+            printed += print_str(x);
+            if(*str <= 15)
+            {
+                write(1,"0",1);
+            }
+            printed += print_hex((unsigned int)*str,1,0);
+            str++;
+        }
+        else
+        {
+            write(1,str,1);
+            str++;
+            printed++;
+        }
+
     }
     return printed - 1 ;
 }

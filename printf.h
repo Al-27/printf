@@ -9,6 +9,7 @@
 #include "output_funcs.h"
 int _printf(const char *format, ...);
 int print_str(char* string);
+int printable_str(char* string);
 int str_len(char* string);
 
 #endif

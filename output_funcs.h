@@ -6,6 +6,6 @@
 int print_bin(unsigned int );
 int print_num(int , unsigned int, int);
 int print_oct(unsigned int );
-int print_hex(unsigned int ,int);
+int print_hex(unsigned int ,int, int);
 
 #endif

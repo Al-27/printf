@@ -82,13 +82,16 @@ int print_oct(unsigned int num)
  * print_hex - desciption
  * @num: int
  * @capital: int
+ * @is_pointer: int
  *
  * Return: int
  */
-int print_hex(unsigned int num,int caps)
+int print_hex(unsigned int num,int caps,int is_pointer)
 {
     char str[sizeof(int)*24];
     int i;
+
+
 
     i = 0;
     do{
@@ -128,6 +131,14 @@ int print_hex(unsigned int num,int caps)
         i++;
 
     }while(num > 0);
+
+    if(is_pointer)
+    {
+        for(; i < 8*2; i++){
+            str[i] = '0';
+        }
+    }
+
 
     str[i] = '\0';
     reverse(str);
